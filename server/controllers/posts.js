@@ -25,9 +25,9 @@ export const getPostsBySearch = async (req, res) => {
     const { searchQuery, tags } = req.query;
 
     try {
-        const title = new RegExp(searchQuery, "i");
+        const studentName = new RegExp(searchQuery, "i");
 
-        const posts = await PostMessage.find({ $or: [ { title }, { tags: { $in: tags.split(',') } } ]});
+        const posts = await PostMessage.find({ $or: [ { studentName }, { tags: { $in: tags.split(',') } } ]});
 
         res.json({ data: posts });
     } catch (error) {    
@@ -75,11 +75,11 @@ export const createPost = async (req, res) => {
 
 export const updatePost = async (req, res) => {
     const { id } = req.params;
-    const { title, message, creator, selectedFile, tags } = req.body;
+    const { studentName, message, creator, selectedFile, tags } = req.body;
     
     if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post with id: ${id}`);
 
-    const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
+    const updatedPost = { creator, studentName, message, tags, selectedFile, _id: id };
 
     await PostMessage.findByIdAndUpdate(id, updatedPost, { new: true });
 
@@ -96,7 +96,7 @@ export const deletePost = async (req, res) => {
     res.json({ message: "Post deleted successfully." });
 }
 
-export const likePost = async (req, res) => {
+export const paidPost = async (req, res) => {
     const { id } = req.params;
 
     if (!req.userId) {
@@ -107,12 +107,12 @@ export const likePost = async (req, res) => {
     
     const post = await PostMessage.findById(id);
 
-    const index = post.likes.findIndex((id) => id ===String(req.userId));
+    const index = post.paids.findIndex((id) => id ===String(req.userId));
 
     if (index === -1) {
-      post.likes.push(req.userId);
+      post.paids.push(req.userId);
     } else {
-      post.likes = post.likes.filter((id) => id !== String(req.userId));
+      post.paids = post.paids.filter((id) => id !== String(req.userId));
     }
 
     const updatedPost = await PostMessage.findByIdAndUpdate(id, post, { new: true });
