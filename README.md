@@ -17,4 +17,4 @@ Run frontend and backend Simultaneously
 
 # Hosting 
 
-Hosted frontend and backend on heroku  
+Hosted frontend on Netlify and backend on heroku  
