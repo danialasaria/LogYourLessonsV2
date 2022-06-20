@@ -10,7 +10,7 @@ MERN (MongoDB, Express, React, NodeJS) + CSS/HTML
 
 # Instructions 
 
-Run frontend and backend Simultaneously 
+Run frontend and backend simultaneously 
 
 1. cd server and run npm i && npm start
 2. cd client && npm i && npm start
