@@ -27,7 +27,7 @@ const Form = ({ currentId, setCurrentId }) => {
   const classes = useStyles();
   const user = JSON.parse(localStorage.getItem("profile"));
   const history = useHistory();
-  const studentNameError = useState(false);
+  // const studentNameError = useState(false);
   // const helperText = useState('');
 
   const clear = () => {
