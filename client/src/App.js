@@ -7,11 +7,13 @@ import Navbar from './components/Navbar/Navbar';
 import Home from './components/Home/Home';
 import Auth from './components/Auth/Auth';
 import CreatorOrTag from './components/CreatorOrTag/CreatorOrTag';
+import { GoogleOAuthProvider } from '@react-oauth/google';
 
 const App = () => {
   const user = JSON.parse(localStorage.getItem('profile'));
 
   return (
+    <GoogleOAuthProvider clientId="859661893489-7n7dmkrkua4rkmbuh45jjc6cvj6kbtp3.apps.googleusercontent.com">
     <BrowserRouter>
       <Container maxWidth="xl">
         <Navbar />
@@ -25,6 +27,7 @@ const App = () => {
         </Switch>
       </Container>
     </BrowserRouter>
+    </GoogleOAuthProvider>
   );
 };
 
