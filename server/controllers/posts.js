@@ -5,6 +5,8 @@ import PostMessage from '../models/postMessage.js';
 
 const router = express.Router();
 
+//controllers are the handlers (logic) for our routes
+
 export const getPosts = async (req, res) => {
     const { page } = req.query;
     

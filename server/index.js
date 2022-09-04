@@ -13,6 +13,7 @@ app.use(express.json({ limit: '30mb', extended: true }))
 app.use(express.urlencoded({ limit: '30mb', extended: true }))
 app.use(cors());
 
+//every post route will begin with /posts or /user
 app.use('/posts', postRoutes);
 app.use("/user", userRouter);
 
@@ -21,6 +22,8 @@ app.get('/', (req, res) => {
 })
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
+
+//Heroku will automatically populate port in prod
 const PORT = process.env.PORT|| 8000;
 
 mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
